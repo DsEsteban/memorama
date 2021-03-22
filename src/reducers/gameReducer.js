@@ -1,8 +1,6 @@
 import { FLIP_CARD } from "../actions/actionTypes";
 import { cards } from '../utils/constant';
 
-console.log('cardsMap=>',cards)
-
 const initialState = {
     cards: cards,
     player1: {
@@ -15,7 +13,8 @@ const initialState = {
     },
     activePlayer: 1,
     firstMove: true,
-    firstPickedCard: null
+    firstPickedCard: null,
+    remainingPairs: cards.size / 2
 };
 
 export default function(state = initialState, action) {
@@ -27,7 +26,7 @@ export default function(state = initialState, action) {
             let changedPickedCard;
             let newActivePlayer = state.activePlayer;
             let player={};
-
+            let remainingPairs={};
             if ( state.firstMove ) {
                 
                 changedPickedCard = {...pickedCard, isFaceUp: true };
@@ -45,7 +44,7 @@ export default function(state = initialState, action) {
                     player = state.activePlayer === 1 ? 
                             {player1: {...state.player1, points: (state.player1.points+1)}} :
                             {player2: {...state.player2, points: (state.player2.points+1)}}
-                    console.log('player=>', player)
+                    remainingPairs = {remainingPairs: state.remainingPairs - 1};
 
                 } else {
 
@@ -64,7 +63,8 @@ export default function(state = initialState, action) {
                 cards: newCardsMap,
                 firstPickedCard: changedPickedCard,
                 activePlayer: newActivePlayer,
-                ...player
+                ...player,
+                ...remainingPairs
             };
 
         default:

@@ -4,7 +4,6 @@ import BoardUI from './boardUI'
 
 const Board = () => {
     const { cards } = useSelector(state => state.game)
-    console.log('cards=>', cards)
     
     return (
         <div>
