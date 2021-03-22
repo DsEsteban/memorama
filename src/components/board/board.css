@@ -1,0 +1,7 @@
+.board-container{
+    background-color: darkturquoise;
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

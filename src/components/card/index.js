@@ -9,7 +9,7 @@ const Card = ({ symbol }) => {
         <div onClick={handleFlipCard}>
             <CardUI 
                 isFaceUp={isFaceUp} 
-                symbol={'1'}
+                symbol={symbol}
             />
         </div>
     );
