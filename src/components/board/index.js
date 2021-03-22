@@ -1,13 +1,14 @@
+import { useSelector } from 'react-redux'
 import './board.css';
 import BoardUI from './boardUI'
 
-const TEST_CARDS = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]
-
 const Board = () => {
-
+    const { cards } = useSelector(state => state.game)
+    console.log('cards=>', cards)
+    
     return (
         <div>
-            <BoardUI cards={TEST_CARDS}/>
+            <BoardUI cards={Array.from(cards.values())}/>
         </div>
     );
 }

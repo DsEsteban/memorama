@@ -7,7 +7,7 @@ const BoardUI = ({ cards }) => {
         <div className='board-container'>
             {
                 cards.map(
-                    value => <Card symbol={value} />
+                    ({ id }) => <Card id={id} key={id} />
                 )
             }
         </div>
