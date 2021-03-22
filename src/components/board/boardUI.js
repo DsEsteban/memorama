@@ -1,16 +1,20 @@
-import './board.css';
+import PointsBoard from '../pointsBoard'
 import Card from '../card'
+import './board.css'
 
 const BoardUI = ({ cards }) => {
 
     return (
-        <div className='board-container'>
-            {
-                cards.map(
-                    ({ id }) => <Card id={id} key={id} />
-                )
-            }
-        </div>
+        <>  
+            <PointsBoard />
+            <div className='board-container'>
+                {
+                    cards.map(
+                        ({ id }) => <Card id={id} key={id} />
+                    )
+                }
+            </div>
+        </>
   );
 }
 

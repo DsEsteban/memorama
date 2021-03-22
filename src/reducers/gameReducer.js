@@ -5,8 +5,14 @@ console.log('cardsMap=>',cards)
 
 const initialState = {
     cards: cards,
-    player1: {},
-    player2: {},
+    player1: {
+        points: 0,
+        color: 'rgb(13 247 84)'
+    },
+    player2: {
+        points: 0,
+        color: 'rgb(218 7 47)'
+    },
     activePlayer: 1,
     firstMove: true,
     firstPickedCard: null
@@ -15,12 +21,12 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
         case FLIP_CARD:
-            console.log('flip card', action.payload.cardId)
             const newCardsMap = new Map(state.cards);
 
             let pickedCard = state.cards.get(action.payload.cardId);
             let changedPickedCard;
             let newActivePlayer = state.activePlayer;
+            let player={};
 
             if ( state.firstMove ) {
                 
@@ -36,7 +42,10 @@ export default function(state = initialState, action) {
                     newCardsMap.set(changedFirstPickedCard.id, changedFirstPickedCard);
                     newCardsMap.set(pickedCard.id, {...pickedCard, isFaceUp: true, belongsTo: state.activePlayer });
                     changedPickedCard = null;
-
+                    player = state.activePlayer === 1 ? 
+                            {player1: {...state.player1, points: (state.player1.points+1)}} :
+                            {player2: {...state.player2, points: (state.player2.points+1)}}
+                    console.log('player=>', player)
 
                 } else {
 
@@ -54,7 +63,8 @@ export default function(state = initialState, action) {
                 firstMove: !state.firstMove,
                 cards: newCardsMap,
                 firstPickedCard: changedPickedCard,
-                activePlayer: newActivePlayer
+                activePlayer: newActivePlayer,
+                ...player
             };
 
         default:
