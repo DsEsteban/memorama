@@ -1,4 +1,4 @@
-import { FLIP_CARD } from "../actions/actionTypes";
+import { FLIP_CARD, PLAY_AGAIN } from "../actions/actionTypes";
 import { cards } from '../utils/constant';
 
 const initialState = {
@@ -66,7 +66,24 @@ export default function(state = initialState, action) {
                 ...player,
                 ...remainingPairs
             };
-
+        
+        case PLAY_AGAIN:
+            return {
+                cards: cards,
+                player1: {
+                    points: 0,
+                    color: 'rgb(13 247 84)'
+                },
+                player2: {
+                    points: 0,
+                    color: 'rgb(218 7 47)'
+                },
+                activePlayer: 1,
+                firstMove: true,
+                firstPickedCard: null,
+                remainingPairs: cards.size / 2
+            }
+            
         default:
             return state;
     }

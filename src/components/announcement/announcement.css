@@ -1,0 +1,9 @@
+.winner-announcement {
+    position: fixed;
+    top: 150px;
+    z-index: 99;
+    background-color: cornsilk;
+    color: black;
+    padding: 20px;
+    border-radius: 20px;
+}
