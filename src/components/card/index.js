@@ -1,13 +1,18 @@
-import './card.css';
+import React, { useState } from 'react'
+import CardUI from './cardUI'
 
-const Card = () => {
-  return (
-    <div className="card-container">
-        <div className="card-content">
-            1
+const Card = ({ symbol }) => {
+    const [isFaceUp, setFaceUp] = useState(false);
+    const handleFlipCard = () => setFaceUp( isFaceUp => !isFaceUp)
+
+    return (
+        <div onClick={handleFlipCard}>
+            <CardUI 
+                isFaceUp={isFaceUp} 
+                symbol={'1'}
+            />
         </div>
-    </div>
-  );
+    );
 }
 
 export default Card;
